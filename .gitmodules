@@ -1,0 +1,3 @@
+[submodule "submodules/edl"]
+	path = submodules/edl
+	url = git@github.com:bkerler/edl.git
