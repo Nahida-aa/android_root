@@ -95,11 +95,38 @@ async function run() {
   console.log(`  → ${mountCount} 条挂载 → mount.txt`);
 
   // 6. 内核模块
-  console.log("[6/6] 内核模块...");
+  console.log("[6/7] 内核模块...");
   const lsmod = await $`adb shell lsmod`.text();
   await writeFile(join(OUT_DIR, "lsmod.txt"), lsmod);
   const modCount = lsmod.split("\n").length - 1;
   console.log(`  → ${modCount} 个模块 → lsmod.txt`);
+
+  // 7. Bootloader / AVB 状态（判断 root 方案的关键）
+  console.log("[7/7] Bootloader & 安全状态...");
+  const bootloaderKeys = [
+    "ro.boot.verifiedbootstate",
+    "ro.boot.flash.locked",
+    "ro.boot.secureboot",
+    "ro.boot.vbmeta.device_state",
+    "ro.boot.avb_version",
+    "ro.boot.slot_suffix",
+    "ro.build.ab_update",
+    "ro.build.tags",
+    "ro.build.fingerprint",
+    "ro.build.description",
+  ];
+  const blLines: string[] = [];
+  for (const k of bootloaderKeys) {
+    const val = await $`adb shell getprop ${k}`.text();
+    blLines.push(`${k}=${val.trim()}`);
+  }
+  await writeFile(join(OUT_DIR, "bootloader_status.txt"), [
+    "# Bootloader & 安全状态",
+    `生成时间: ${now}`,
+    "",
+    ...blLines,
+  ].join("\n"));
+  console.log("  → 写入 bootloader_status.txt");
 
   // 总结
   console.log("");
