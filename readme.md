@@ -16,11 +16,16 @@
 
 | 项目 | 内容 |
 |------|------|
-| 型号 | 红米 K70 (Note 14 Pro) |
-| 代号 | _待补充_ |
-| Android 版本 | _待补充_ |
-| 内核版本 | _待补充_ |
-| 状态 | 待提取 |
+| 型号 | 红米 K70 (Note 14 Pro) — 24115RA8EC |
+| 代号 | `amethyst` |
+| 处理器 | 第三代骁龙 7s (SM7435-AB, ID 636, 平台 `volcano`) |
+| GPU | Adreno (GPU 型号待确认) |
+| Android 版本 | 16 (API 36) |
+| 安全补丁 | 2026-03-01 |
+| 系统版本 | BP2A.250605.031.A3 |
+| 内核版本 | `6.1.138-android14-11` (aarch64, 2025-12-03) |
+| SELinux | Enforcing |
+| 状态 | 已提取 |
 
 ## 目录结构
 
@@ -39,5 +44,5 @@ resources/    — 外部资源与参考链接
 ## 快速开始
 
 1. 连接手机并通过 adb 授权
-2. 运行 `device/scripts/` 下的提取脚本获取设备信息
+2. 运行 `bun run device/scripts/extract_device_info.ts` 获取设备信息（需已安装 [Bun](https://bun.sh)）
 3. 在对应分类目录下记录研究笔记

@@ -1,0 +1,18 @@
+# Node / Bun
+node_modules/
+*.node
+
+# 提取的设备文件（体积大，不需要提交）
+device/*/files/
+device/*/info/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~

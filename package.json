@@ -1,6 +1,7 @@
 {
   "name": "android-root",
+  "private": true,
   "scripts": {
-    ""
+    "extract-device": "bun run device/scripts/extract_device_info.ts"
   }
 }
